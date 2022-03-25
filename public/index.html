@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="./images/chat.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    
+ 
+    <title>Chat Valley</title>
+</head>
+<body>
+    <div class="main">
+
+
+        <div class="navbar container mx-auto p-3" id="navbar">
+            <img src="./images/chat.png" class="w-10 h-10">
+            <span class="font-bold online"> <span class="text-2xl" id="connected">1000</span>  online now</span>
+        </div>
+  
+     
+        <div class="first"  id="first">
+            <div>
+                <p class="mb-3 text-4xl font-bold main_title">
+                    Start Making New Friends
+                </p>
+                <button class="myButton" id="video_chat">Start</button>    
+                <p class="mt-4 text-2xl hidden" id="nostranger">
+                    No strangers available
+                </p>   
+            </div>
+            
+        </div>
+
+         
+                
+  
+            <div class="video_container hidden container mx-auto pl-5 pr-5 text-center" id="video_container" >
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 video_div">
+                        <video muted autoplay class="video img-fluid" id="remote_video"></video>
+                    <div class="video text-center"  id="loading">
+                        <img src="./images/Search.gif"  style="width: 80px;height: 80px;display: inline;" class="loading">
+
+                    </div>
+
+                    
+                  
+                       
+                        <video muted autoplay class="video img-fluid" id="local_video"></video>
+                   
+                </div>
+                <div class="buttons">
+                    <div>
+                        <button href="#" class="myButton2" id="stop">Stop</button>    
+                        <button href="#" class="myButton3" id="next">Next</button>   
+                    </div>
+                    
+                </div>
+              
+            </div>
+
+
+
+    </div>
+  
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/main.js" type="module"></script>
+    <script src="./js/stranger.js" type="module"></script>
+    <script src="./js/contasts.js" type="module"></script>
+    <script src="./js/ui.js" type="module"></script>
+    <script src="./js/handler.js" type="module"></script>
+    <script src="./js/register.js" type="module"></script>
+
+</body>
+</html>
