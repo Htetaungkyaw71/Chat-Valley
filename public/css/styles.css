@@ -10,8 +10,8 @@ body{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 160px;
-     text-align: center;  
+	padding-top: 160px;
+    text-align: center;  
 }
 .main_title{
 	color: #33bdef;
@@ -192,30 +192,37 @@ body{
     justify-content: space-between;
 }
 
- @media only screen and (max-width: 585px) {
+
+ @media only screen and (max-width: 768px) {
 	.main_title{
-		font-size: 25px!important;
+		display: none;
+	}
+	#support{
+		display: block;
+		font-size: 28px!important;
+		color: #33bdef;
+	}
+	.navbar{
+		display: none!important;
 	}
 	.first{
-		margin-top: 120px!important;
+		padding-top: 250px;
+		display: flex!important;		
 	}
-	   
-     .video{
-        height: 200px!important;
-    } 
-    .myButton,.myButton1,.myButton2,.myButton3{
-        width: auto!important;
-    }
+	#loading{
+		display: none;
+	}
+	#video_container{
+		display: none!important;
+	}
+	#video_chat{
+		background-color: rebeccapurple;
+		display: none!important;
+	}
   } 
 
 
 
-    @media only screen and (min-width: 585px) and (max-device-width: 640px) {
-
-     .video{
-        height: 250px!important;
-    }
-}
 
 
   /* message */
