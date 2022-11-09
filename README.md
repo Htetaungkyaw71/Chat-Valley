@@ -12,9 +12,13 @@
 - NodeJs
 - Socket.io
 
+## ScreenShot
+![Alt text](/screenshot/chat_screenshot.png?raw=true "Chat Valley")
+
 ## Live Demo (if available)
 
 [Live Demo Link](https://chat-valley.herokuapp.com/)
+
 
 
 ## Getting Started
