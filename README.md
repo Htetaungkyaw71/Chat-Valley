@@ -17,7 +17,7 @@
 
 ## Live Demo (if available)
 
-[Live Demo Link](https://chat-valley.herokuapp.com/)
+[Live Demo Link](https://chat-valley-c8j2.onrender.com/)
 
 
 
