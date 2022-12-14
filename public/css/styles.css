@@ -180,9 +180,6 @@ body{
 	align-items: center;
 }
 
-
-
-
 .online{
     color:#33bdef;
 }
@@ -194,30 +191,21 @@ body{
 
 
  @media only screen and (max-width: 768px) {
+	.myButton,.myButton1, .myButton2,.myButton3  {
+		padding: 10px 30px;
+		width: auto!important;
+		font-size: 15px;
+	}
+	.myButton3{
+		margin-left: 10px;
+	}
+	.buttons div{
+		display: flex;
+		flex-direction: row;
+	}
+	
 	.main_title{
-		display: none;
-	}
-	#support{
-		display: block;
-		font-size: 28px!important;
-		color: #33bdef;
-	}
-	.navbar{
-		display: none!important;
-	}
-	.first{
-		padding-top: 250px;
-		display: flex!important;		
-	}
-	#loading{
-		display: none;
-	}
-	#video_container{
-		display: none!important;
-	}
-	#video_chat{
-		background-color: rebeccapurple;
-		display: none!important;
+		font-size: 25px!important;
 	}
   } 
 
@@ -230,11 +218,9 @@ body{
 	box-sizing:border-box;
 }
 body{
-	/* background-color:#abd9e9; */
 	font-family:Arial;
 }
 #container{
-	/* height:600px; */
 	background:#eff3f7;
 	margin:0 auto;
 	font-size:0;
