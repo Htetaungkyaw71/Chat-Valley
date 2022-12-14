@@ -33,8 +33,15 @@ const defaultdata = {
 export const getLocalStream = ()=>{
     navigator.mediaDevices.getUserMedia(defaultdata)
     .then(stream=>{
+        document.getElementById('video_chat').disabled = false;
+        document.getElementById('err').innerHTML = "";
         store.setlocalStream(stream)
         ui.updateLocalStream(stream)
+    })
+    .catch(err=>{
+        document.getElementById('video_chat').disabled = true;   
+        document.getElementById('err').innerHTML = "Camera blocked. Please enable it and try again. Kindly access your video and microphone to use this application"; 
+   
     })
   
 }
