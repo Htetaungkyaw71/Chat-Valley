@@ -137,8 +137,10 @@ const syncCallLayout = (video_container)=>{
         'mixed-video-shapes',
         'remote-portrait',
         'remote-landscape',
+        'remote-square',
         'local-portrait',
-        'local-landscape'
+        'local-landscape',
+        'local-square'
     ]
 
     video_container.classList.remove(...layoutClasses)

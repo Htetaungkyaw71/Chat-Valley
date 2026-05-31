@@ -317,22 +317,60 @@ button {
 }
 
 .mixed-video-shapes .video_div {
-    grid-template-columns: minmax(0, 1fr) minmax(220px, min(24vw, 360px));
+    position: relative;
+    display: block;
+    width: min(100%, 1120px);
+    margin: 0 auto;
 }
 
 .mixed-video-shapes .local-tile {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    width: min(22vw, 220px);
     min-height: 0;
-}
-
-.mixed-video-shapes.remote-landscape.local-portrait .local-tile {
-    width: auto;
-    max-width: 100%;
-    height: clamp(360px, 52vh, 560px);
+    aspect-ratio: 16 / 9;
+    border: 2px solid rgba(255, 255, 255, 0.82);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+    z-index: 3;
 }
 
 .mixed-video-shapes.remote-portrait .remote-tile {
-    width: auto;
-    max-width: min(100%, 520px);
+    width: min(100%, 360px);
+    height: auto;
+    min-height: 0;
+    margin: 0 auto;
+    aspect-ratio: 9 / 16;
+}
+
+.mixed-video-shapes.remote-portrait .video_div {
+    width: min(100%, 360px);
+}
+
+.mixed-video-shapes.remote-portrait .local-tile {
+    width: min(30vw, 160px);
+}
+
+.mixed-video-shapes.local-portrait .local-tile {
+    width: min(16vw, 150px);
+    aspect-ratio: 9 / 16;
+}
+
+.mixed-video-shapes.local-square .local-tile {
+    width: min(18vw, 170px);
+    aspect-ratio: 1 / 1;
+}
+
+.mixed-video-shapes .local-tile.preview-expanded {
+    width: min(30vw, 300px);
+}
+
+.mixed-video-shapes.local-portrait .local-tile.preview-expanded {
+    width: min(22vw, 210px);
+}
+
+.mixed-video-shapes.local-square .local-tile.preview-expanded {
+    width: min(24vw, 230px);
 }
 
 .video {
@@ -529,9 +567,26 @@ button {
         z-index: 3;
     }
 
+    .mixed-video-shapes .local-tile {
+        right: 10px;
+        bottom: 12px;
+        width: min(26vw, 118px);
+        min-width: 82px;
+        aspect-ratio: 9 / 16;
+    }
+
+    .mixed-video-shapes.remote-portrait .local-tile {
+        width: min(26vw, 118px);
+    }
+
     .local-tile.is-landscape {
         width: min(34vw, 150px);
         height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .mixed-video-shapes .local-tile.is-landscape {
+        width: min(34vw, 150px);
         aspect-ratio: 16 / 9;
     }
 
@@ -545,7 +600,16 @@ button {
         aspect-ratio: 1 / 1;
     }
 
+    .mixed-video-shapes .local-tile.is-square {
+        width: min(28vw, 124px);
+        aspect-ratio: 1 / 1;
+    }
+
     .local-tile.preview-expanded {
+        width: min(44vw, 178px);
+    }
+
+    .mixed-video-shapes .local-tile.preview-expanded {
         width: min(44vw, 178px);
     }
 
@@ -553,7 +617,15 @@ button {
         width: min(52vw, 210px);
     }
 
+    .mixed-video-shapes .local-tile.preview-expanded.is-landscape {
+        width: min(52vw, 210px);
+    }
+
     .local-tile.preview-expanded.is-square {
+        width: min(42vw, 172px);
+    }
+
+    .mixed-video-shapes .local-tile.preview-expanded.is-square {
         width: min(42vw, 172px);
     }
 
