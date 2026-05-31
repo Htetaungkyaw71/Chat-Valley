@@ -94,3 +94,8 @@ let report = document.getElementById('report')
 report.addEventListener('click',()=>{
     handler.report_current_match()
 })
+
+let previewToggle = document.getElementById('preview_toggle')
+previewToggle.addEventListener('click',()=>{
+    document.querySelector('.local-tile')?.classList.toggle('preview-expanded')
+})

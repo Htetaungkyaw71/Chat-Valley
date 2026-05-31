@@ -419,6 +419,17 @@ button {
     backdrop-filter: blur(10px);
 }
 
+.preview-toggle {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    padding: 0;
+    border-radius: inherit;
+    background: transparent;
+    cursor: pointer;
+    z-index: 2;
+}
+
 .buttons {
     display: flex;
     flex-wrap: wrap;
@@ -490,6 +501,11 @@ button {
         aspect-ratio: auto;
     }
 
+    .remote-tile .video {
+        object-fit: cover;
+        object-position: center center;
+    }
+
     .remote-tile.is-portrait,
     .remote-tile.is-landscape,
     .remote-tile.is-square {
@@ -502,9 +518,9 @@ button {
     .local-tile {
         position: absolute;
         right: 10px;
-        bottom: 10px;
-        width: min(38vw, 160px);
-        min-width: 102px;
+        bottom: 12px;
+        width: min(26vw, 118px);
+        min-width: 82px;
         height: auto;
         min-height: auto;
         aspect-ratio: 9 / 16;
@@ -514,7 +530,7 @@ button {
     }
 
     .local-tile.is-landscape {
-        width: min(44vw, 190px);
+        width: min(34vw, 150px);
         height: auto;
         aspect-ratio: 16 / 9;
     }
@@ -524,9 +540,37 @@ button {
     }
 
     .local-tile.is-square {
-        width: min(36vw, 150px);
+        width: min(28vw, 124px);
         height: auto;
         aspect-ratio: 1 / 1;
+    }
+
+    .local-tile.preview-expanded {
+        width: min(44vw, 178px);
+    }
+
+    .local-tile.preview-expanded.is-landscape {
+        width: min(52vw, 210px);
+    }
+
+    .local-tile.preview-expanded.is-square {
+        width: min(42vw, 172px);
+    }
+
+    .local-tile .video-label {
+        left: 8px;
+        bottom: 8px;
+        min-height: 24px;
+        padding: 4px 9px;
+        font-size: 0.74rem;
+    }
+
+    .local-tile.preview-expanded .video-label {
+        left: 12px;
+        bottom: 12px;
+        min-height: 30px;
+        padding: 6px 12px;
+        font-size: 0.82rem;
     }
 
     .loading-state {

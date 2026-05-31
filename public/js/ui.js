@@ -8,9 +8,11 @@ export const Change_Video_Ui = ()=>{
     let video_container = document.getElementById('video_container')
     let remote_video = document.getElementById('remote_video')
     let call_status = document.getElementById('call_status')
+    let local_tile = document.querySelector('.local-tile')
 
     loading.style.display = "none";
     call_status.innerHTML = "Connected"
+    local_tile?.classList.remove('preview-expanded')
 
     
     HideElement(first)
