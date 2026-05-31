@@ -7,12 +7,13 @@ export const Change_Video_Ui = ()=>{
     let loading = document.getElementById('loading')
     let video_container = document.getElementById('video_container')
     let remote_video = document.getElementById('remote_video')
+    let call_status = document.getElementById('call_status')
 
     loading.style.display = "none";
+    call_status.innerHTML = "Connected"
 
     
     HideElement(first)
-    HideElement(navbar)
     HideElement(loading)
     ShowElement(video_container)
     ShowElement(remote_video)
@@ -66,9 +67,10 @@ export const updateLoading = ()=>{
     let video_container = document.getElementById('video_container')
     let loading = document.getElementById('loading')
     let remote_video = document.getElementById('remote_video')
+    let call_status = document.getElementById('call_status')
     loading.style.display = "flex"
+    call_status.innerHTML = "Finding a stranger..."
     HideElement(first)
-    HideElement(navbar)
     HideElement(remote_video)
     ShowElement(video_container)
     ShowElement(loading)
@@ -99,4 +101,3 @@ const HideElement = (element)=>{
         element.classList.add('hidden')
     }
 }
-

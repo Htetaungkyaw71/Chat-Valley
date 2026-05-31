@@ -3,16 +3,18 @@ import * as handler from "./handler.js"
 import * as ui from "./ui.js"
 
 let StrangerCallType;
-export const pre_sent_first = (callType)=>{
+let StrangerTopic = "global";
+
+export const pre_sent_first = (callType, topic = StrangerTopic)=>{
     StrangerCallType = callType
-    register.pre_sent()
+    StrangerTopic = topic || "global"
+    register.pre_sent({ topic: StrangerTopic })
 }
 
 
 export const pre_sent = async(data)=>{
     if(data.randomPeer){
-        ui.Change_Video_Ui()
-        handler.sendPreOffer(StrangerCallType,data.randomPeer)           
+        handler.sendPreOffer(StrangerCallType,data.randomPeer)
     }else{
         ui.nostrangers()
     }

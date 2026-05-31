@@ -26,7 +26,11 @@ export const sendPreOffer = (callType,callee)=>{
 
 let peerConnection;
 const defaultdata = {
-    video:true,
+    video:{
+        width: { ideal: 1280 },
+        height: { ideal: 720 },
+        facingMode: "user"
+    },
     audio:true
 }
 
@@ -38,19 +42,47 @@ export const getLocalStream = ()=>{
         store.setlocalStream(stream)
         ui.updateLocalStream(stream)
     })
-    .catch(err=>{
+    .catch(()=>{
         document.getElementById('video_chat').disabled = true;   
-        document.getElementById('err').innerHTML = "Camera blocked. Please enable it and try again. Kindly access your video and microphone to use this application"; 
+        document.getElementById('err').innerHTML = "Camera or microphone access is blocked. Enable both permissions and refresh Chat Valley."; 
    
     })
   
+}
+
+export const toggleMediaTrack = (kind)=>{
+    const localStream = store.getState().localStream;
+    if(!localStream){
+        return false
+    }
+
+    const tracks = kind === "audio" ? localStream.getAudioTracks() : localStream.getVideoTracks();
+    tracks.forEach(track => {
+        track.enabled = !track.enabled
+    })
+
+    return tracks.length > 0 ? !tracks[0].enabled : false
+}
+
+export const report_current_match = ()=>{
+    if(connectedUserDetails){
+        register.report_match({
+            socketId: connectedUserDetails.socketId
+        })
+        next_stop_video()
+    }else{
+        ui.nostrangers()
+    }
 }
 
 
 let configuration = {
     iceServers : [
         {
-            urls: "stun:stun.l.google.com:13902"
+            urls: "stun:stun.l.google.com:19302"
+        },
+        {
+            urls: "stun:stun1.l.google.com:19302"
         }
     ]
 }
@@ -126,7 +158,6 @@ const sendPreOfferAnswer = (preofferanswer)=>{
 export const handle_offer_answer = (data)=>{
     let {preofferanswer} = data
     if(preofferanswer === contasts.OFFER.ACCEPT){
-        ui.Change_Video_Ui() 
         createPeerConnection()
         webSentOffer()
     }
@@ -137,6 +168,10 @@ export const handle_offer_answer = (data)=>{
 }
 
 export const stop_video = ()=>{
+    if(!connectedUserDetails){
+        ui.updateUiClose(contasts.callType.VIDEO_STRANGERS)
+        return
+    }
     let data = {
         socketId:connectedUserDetails.socketId
     }
@@ -152,7 +187,12 @@ export const handle_stop_video = ()=>{
 }
 
 export const next_stop_video = async()=>{
- 
+    if(!connectedUserDetails){
+        ui.updateLoading()
+        await stranger.pre_sent_first(contasts.callType.VIDEO_STRANGERS)
+        return
+    }
+
     let data = {
         socketId:connectedUserDetails.socketId
     }
@@ -198,9 +238,10 @@ const nextclosePeerConnection = ()=>{
         peerConnection = null;
     }
     
-    if(connectedUserDetails.callType === contasts.callType.VIDEO_STRANGERS){
-        store.getState().remoteStream.getVideoTracks()[0].enabled = true
-        store.getState().remoteStream.getAudioTracks()[0].enabled = true
+    const remoteStream = store.getState().remoteStream;
+    if(connectedUserDetails && connectedUserDetails.callType === contasts.callType.VIDEO_STRANGERS && remoteStream){
+        remoteStream.getVideoTracks().forEach(track => track.enabled = true)
+        remoteStream.getAudioTracks().forEach(track => track.enabled = true)
     }
 }
 
@@ -209,9 +250,12 @@ const closePeerConnection = ()=>{
         peerConnection.close()
         peerConnection = null;
     }
-    if(connectedUserDetails.callType === contasts.callType.VIDEO_STRANGERS){
-        store.getState().localStream.getVideoTracks()[0].enabled = true
-        store.getState().localStream.getAudioTracks()[0].enabled = true
+    const localStream = store.getState().localStream;
+    if(connectedUserDetails && connectedUserDetails.callType === contasts.callType.VIDEO_STRANGERS){
+        if(localStream){
+            localStream.getVideoTracks().forEach(track => track.enabled = true)
+            localStream.getAudioTracks().forEach(track => track.enabled = true)
+        }
         ui.updateUiClose(connectedUserDetails.callType)
         connectedUserDetails = null
     }

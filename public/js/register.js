@@ -53,8 +53,8 @@ export const start = (socket)=>{
     
 }
 
-export const pre_sent = ()=>{
-    socketIo.emit('pre_sent')
+export const pre_sent = (data = {})=>{
+    socketIo.emit('pre_sent', data)
 }
 export const sendPreOfferAnswer = (data)=>{
     socketIo.emit('pre_offer_answer',data)
@@ -77,4 +77,8 @@ export const sentWebOffer = (data)=>{
 
 export const stop_video = (data)=>{
     socketIo.emit('stop_video',data)
+}
+
+export const report_match = (data)=>{
+    socketIo.emit('report_match',data)
 }
