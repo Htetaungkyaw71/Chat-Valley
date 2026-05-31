@@ -29,6 +29,17 @@ This is a video chat application. Users need to allow their camera and microphon
 ### Deployment
 In your command prompt, you need to run `npm install` to get required packages and then you can run `npm start` this website.
 
+### Production realtime hosting
+
+Chat Valley uses Socket.io for WebRTC signaling, so the Node server needs a persistent runtime. Deploy the server to a platform that supports long-running Node/WebSocket apps, such as Render, Railway, Fly.io, or a VPS. If the frontend is hosted separately on Vercel, set the `socket-url` meta tag in `public/index.html` to your backend URL and set `CORS_ORIGIN` on the backend to your Vercel domain.
+
+Example:
+
+- Frontend: `https://chat-valley.vercel.app`
+- Backend: `https://chat-valley-api.onrender.com`
+- Backend env: `CORS_ORIGIN=https://chat-valley.vercel.app`
+- HTML: `<meta name="socket-url" content="https://chat-valley-api.onrender.com">`
+
 
 
 ## Authors

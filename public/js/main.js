@@ -5,8 +5,23 @@ import * as stranger from "./stranger.js"
 
 
 
-let socket = io();
+const configuredSocketUrl = document.querySelector('meta[name="socket-url"]')?.content.trim()
+const savedSocketUrl = localStorage.getItem('CHAT_VALLEY_SOCKET_URL')?.trim()
+const socketUrl = configuredSocketUrl || savedSocketUrl || undefined
+const socket = io(socketUrl, {
+    transports: ["websocket"],
+    reconnection: true,
+    reconnectionAttempts: 8,
+    timeout: 12000
+});
 let selectedTopic = "global";
+const connectionError = document.getElementById('err')
+
+socket.on("connect_error", () => {
+    if(connectionError){
+        connectionError.innerHTML = "Realtime server is not connected. Check the Socket.io backend URL."
+    }
+})
 
 
 register.start(socket)

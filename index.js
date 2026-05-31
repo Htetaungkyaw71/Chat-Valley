@@ -5,7 +5,16 @@ const path = require('path')
 const PORT = process.env.PORT || 3000
 const app = express()
 const server = http.createServer(app)
-const io = require('socket.io')(server)
+const allowedOrigins = (process.env.CORS_ORIGIN || '')
+    .split(',')
+    .map(origin => origin.trim())
+    .filter(Boolean)
+const io = require('socket.io')(server, {
+    cors: {
+        origin: allowedOrigins.length > 0 ? allowedOrigins : true,
+        methods: ['GET', 'POST']
+    }
+})
 
 app.use(express.static('public'))
 
@@ -49,8 +58,17 @@ app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
+app.get('/health',(req,res)=>{
+    res.json({
+        ok: true,
+        connected: connectedPeers.length
+    })
+})
+
 io.on('connection',(socket)=>{
-    connectedPeers.push(socket.id)
+    if(!connectedPeers.includes(socket.id)){
+        connectedPeers.push(socket.id)
+    }
     emitConnectedUsers()
 
     socket.on('connecteduser',()=>{

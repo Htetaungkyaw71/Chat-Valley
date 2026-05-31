@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#3b82f6">
     <meta name="description" content="Chat Valley is a fast random video chat app for meeting new people live by topic, with camera controls and mobile-friendly video.">
+    <meta name="socket-url" content="">
     <meta name="keywords" content="random video chat, live video chat, chat with strangers, Omegle alternative, OmeTV alternative, Chat Valley">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://chat-valley-zx8a.onrender.com/">
@@ -85,8 +86,11 @@
                     <div class="video-tile remote-tile">
                         <video autoplay playsinline class="video" id="remote_video"></video>
                         <div class="loading-state" id="loading">
-                            <img src="./images/Search.gif" alt="" class="loading">
-                            <span>Searching for a match</span>
+                            <div class="search-loader" aria-hidden="true">
+                                <span class="search-loader__ring"></span>
+                                <span class="search-loader__handle"></span>
+                            </div>
+                            <span class="loading-copy">Searching for a match</span>
                         </div>
                         <span class="video-label">Stranger</span>
                     </div>
@@ -108,7 +112,7 @@
         </main>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/socket.io.min.js"></script>
     <script src="./js/main.js" type="module"></script>
     <script src="./js/stranger.js" type="module"></script>
     <script src="./js/contasts.js" type="module"></script>
